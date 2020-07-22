@@ -1,9 +1,11 @@
 let axios = require('axios');
 
-function ServiceNow(instance, userid, password) {
-    this.instance = instance;
-    this.userid = userid;
-    this.password = password;
+class ServiceNow {
+    constructor(instance, userid, password) {
+        this.instance = instance;
+        this.userid = userid;
+        this.password = password;
+    }
 }
 
 const getInstance = instance => instance.indexOf(".") >= 0 ? instance : `${instance}.service-now.com`;
@@ -142,7 +144,7 @@ ServiceNow.prototype.getIncidentComments = function (incident_id, callback) {
     let sysparm_fields = 'sysparm_fields=';
     let sysparm_query = 'sysparm_query=';
     let url = `https://${getInstance(this.instance)}/api/now/table/sys_audit?sysparm_query=element_id=b060d28adb291050c9ac5bd05b9619a7^element=comments`
-        //let url = `https://${getInstance(this.instance)}/api/now/table/sys_journal_field?sysparm_query=element_id=b060d28adb291050c9ac5bd05b9619a7^element=comments`;
+    //let url = `https://${getInstance(this.instance)}/api/now/table/sys_journal_field?sysparm_query=element_id=b060d28adb291050c9ac5bd05b9619a7^element=comments`;
 
     const options = {
         url: url,
